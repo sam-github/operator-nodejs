@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: operator-nodejs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: operator-nodejs
+  template:
+    metadata:
+      labels:
+        name: operator-nodejs
+    spec:
+      serviceAccountName: operator-nodejs
+      containers:
+        - name: operator-nodejs
+          # Replace this with the built image name
+          image: REPLACE_IMAGE
+          command:
+          - operator-nodejs
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "operator-nodejs"
