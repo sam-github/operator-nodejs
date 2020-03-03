@@ -16,7 +16,7 @@ spec:
       containers:
         - name: operator-nodejs
           # Replace this with the built image name
-          image: REPLACE_IMAGE
+          image: octet/operator-nodejs:latest
           command:
           - operator-nodejs
           imagePullPolicy: Always

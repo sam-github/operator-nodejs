@@ -3,8 +3,12 @@ module github.com/sam-github/operator-nodejs
 go 1.13
 
 require (
+	github.com/onsi/ginkgo v1.12.0 // indirect
+	github.com/onsi/gomega v1.9.0 // indirect
 	github.com/operator-framework/operator-sdk v0.15.1-0.20200227224723-453e43e06c89
 	github.com/spf13/pflag v1.0.5
+	golang.org/x/xerrors v0.0.0-20191011141410-1b5146add898 // indirect
+	gopkg.in/yaml.v2 v2.2.8 // indirect
 	k8s.io/api v0.0.0
 	k8s.io/apimachinery v0.0.0
 	k8s.io/client-go v12.0.0+incompatible
