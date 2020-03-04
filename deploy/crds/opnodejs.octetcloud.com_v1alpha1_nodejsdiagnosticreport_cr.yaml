@@ -1,0 +1,7 @@
+apiVersion: opnodejs.octetcloud.com/v1alpha1
+kind: NodejsDiagnosticReport
+metadata:
+  name: example-nodejsdiagnosticreport
+spec:
+  # Add fields here
+  size: 3
