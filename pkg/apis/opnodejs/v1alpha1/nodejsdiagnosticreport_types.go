@@ -10,6 +10,8 @@ import (
 
 // NodejsDiagnosticReportSpec defines the desired state of NodejsDiagnosticReport
 type NodejsDiagnosticReportSpec struct {
+	// Name of the pod that should write a diagnostic report.
+	PodName string `json:"podName"`
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "operator-sdk generate k8s" to regenerate code after
 	// modifying this file
