@@ -99,8 +99,10 @@ func main() {
 	}
 
 	// Add support for MultiNamespace set in WATCH_NAMESPACE (e.g ns1,ns2)
-	// Note that this is not intended to be used for excluding namespaces, this is better done via a Predicate
-	// Also note that you may face performance issues when using this with a high number of namespaces.
+	// Note that this is not intended to be used for excluding namespaces, this is
+	// better done via a Predicate.
+	// Also note that you may face performance issues when using this with a high
+	// number of namespaces.
 	// More Info: https://godoc.org/github.com/kubernetes-sigs/controller-runtime/pkg/cache#MultiNamespacedCacheBuilder
 	if strings.Contains(namespace, ",") {
 		options.Namespace = ""
@@ -140,8 +142,8 @@ func main() {
 	}
 }
 
-// addMetrics will create the Services and Service Monitors to allow the operator export the metrics by using
-// the Prometheus operator
+// addMetrics() will create the Services and Service Monitors to allow the
+// operator to export the metrics by using the Prometheus operator
 func addMetrics(ctx context.Context, cfg *rest.Config, namespace string) {
 	if err := serveCRMetrics(cfg); err != nil {
 		if errors.Is(err, k8sutil.ErrRunLocal) {
@@ -169,16 +171,18 @@ func addMetrics(ctx context.Context, cfg *rest.Config, namespace string) {
 	_, err = metrics.CreateServiceMonitors(cfg, namespace, services)
 	if err != nil {
 		log.Info("Could not create ServiceMonitor object", "error", err.Error())
-		// If this operator is deployed to a cluster without the prometheus-operator running, it will return
-		// ErrServiceMonitorNotPresent, which can be used to safely skip ServiceMonitor creation.
+		// If this operator is deployed to a cluster without the prometheus-operator
+		// running, it will return ErrServiceMonitorNotPresent, which can be used to
+		// safely skip ServiceMonitor creation.
 		if err == metrics.ErrServiceMonitorNotPresent {
 			log.Info("Install prometheus-operator in your cluster to create ServiceMonitor objects", "error", err.Error())
 		}
 	}
 }
 
-// serveCRMetrics gets the Operator/CustomResource GVKs and generates metrics based on those types.
-// It serves those metrics on "http://metricsHost:operatorMetricsPort".
+// serveCRMetrics() gets the Operator/CustomResource GVKs and generates metrics
+// based on those types.  It serves those metrics on
+// http://metricsHost:operatorMetricsPort
 func serveCRMetrics(cfg *rest.Config) error {
 	// Below function returns filtered operator/CustomResource specific GVKs.
 	// For more control override the below GVK list with your own custom logic.
