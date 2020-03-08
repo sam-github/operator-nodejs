@@ -3,5 +3,4 @@ kind: NodejsDiagnosticReport
 metadata:
   name: example-nodejsdiagnosticreport
 spec:
-  # Add fields here
-  size: 3
+  podName: coredns-9b8997588-ctz8w
