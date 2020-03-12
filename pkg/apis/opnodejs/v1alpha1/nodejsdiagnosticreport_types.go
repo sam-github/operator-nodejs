@@ -21,6 +21,8 @@ type NodejsDiagnosticReportSpec struct {
 
 // NodejsDiagnosticReportStatus defines the observed state of NodejsDiagnosticReport
 type NodejsDiagnosticReportStatus struct {
+	// Result of triggering the report
+	Result string `json:"result"`
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "operator-sdk generate k8s" to regenerate code after
 	// modifying this file

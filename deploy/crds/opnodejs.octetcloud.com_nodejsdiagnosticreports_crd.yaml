@@ -41,6 +41,12 @@ spec:
         status:
           description: NodejsDiagnosticReportStatus defines the observed state of
             NodejsDiagnosticReport
+          properties:
+            result:
+              description: Result of triggering the report
+              type: string
+          required:
+          - result
           type: object
       type: object
   version: v1alpha1

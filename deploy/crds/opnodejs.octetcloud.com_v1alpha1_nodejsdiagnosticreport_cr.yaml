@@ -3,4 +3,4 @@ kind: NodejsDiagnosticReport
 metadata:
   name: example-nodejsdiagnosticreport
 spec:
-  podName: coredns-9b8997588-ctz8w
+  podName: ex-6dc97d9b69-2s7wt
