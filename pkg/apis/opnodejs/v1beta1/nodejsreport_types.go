@@ -4,21 +4,29 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
-// NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
+// NOTE: json tags are required.  Any new fields you add must have json tags for
+// the fields to be serialized.
 
 // NodejsReportSpec defines the desired state of NodejsReport
 type NodejsReportSpec struct {
+	// Name of the pod that should write a report.
+	PodName string `json:"podName"`
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
-	// Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
+	// Important: Run "operator-sdk generate k8s" to regenerate code after
+	// modifying this file
+	// Add custom validation using kubebuilder tags:
+	// https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
 }
 
 // NodejsReportStatus defines the observed state of NodejsReport
 type NodejsReportStatus struct {
+	// Result of triggering the report
+	Result string `json:"result"`
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
-	// Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
+	// Important: Run "operator-sdk generate k8s" to regenerate code after
+	// modifying this file
+	// Add custom validation using kubebuilder tags:
+	// https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object

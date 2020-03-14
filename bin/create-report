@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+set -x
+
+cat deploy/crds/opnodejs.appsody.dev_v1beta1_nodejsreport_cr.yaml | \
+  sed -e s/REPLACEME_PODNAME/$(kubectl get pod -l "nodejs.appsody.dev/report=supported" -o jsonpath="{.items[0].metadata.name}")/ | \
+  kubectl create -f -

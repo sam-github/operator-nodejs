@@ -3,5 +3,4 @@ kind: NodejsReport
 metadata:
   name: example-nodejsreport
 spec:
-  # Add fields here
-  size: 3
+  podName: REPLACEME_PODNAME
