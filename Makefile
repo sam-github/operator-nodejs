@@ -19,10 +19,10 @@ push: build
 	docker push $(IMAGE)
 
 kube-init:
-	kubectl create -f $(CRD)
+	kubectl create -f $(CRD) || kubectl replace -f $(CRD)
 
-local-run:
-	operator-sdk run --local --namespace=default
+local-run: check-build
+	WATCH_NAMESPACE=default ./build/_output/bin/operator-nodejs-local
 
 example-report:
 	kubectl apply -f deploy/crds/opnodejs.octetcloud.com_v1alpha1_nodejsdiagnosticreport_cr.yaml
