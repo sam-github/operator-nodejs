@@ -1,0 +1,7 @@
+apiVersion: opnodejs.appsody.dev/v1beta1
+kind: NodejsReport
+metadata:
+  name: example-nodejsreport
+spec:
+  # Add fields here
+  size: 3
