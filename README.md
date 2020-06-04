@@ -50,3 +50,61 @@ metadata:
 spec:
   podName: REPLACEME_PODNAME
 ```
+
+## TODO
+
+- [x] rename "diagnosticreport" to "report", octetcloud to appsody.dev
+- feature: report
+  - [x] send signal
+  - [x] check label for support (label searchable)
+  - [x] appsody stack with report integration
+  - [ ] check annotation for signal name?
+  - [ ] when report is deleted, there is a log msg about being reconciled, but
+        nothing saying why nothing is happening
+  - [ ] conditions history?
+    - try? https://github.com/redhat-cop/operator-utils
+  - [ ] kAppNav integration
+  - [ ] appsody stack: PR?
+  XXX does it report on handled promises? when exit code is not 0?
+  - [ ] tests?
+    - https://github.com/operator-framework/operator-sdk/blob/master/doc/test-framework/writing-e2e-tests.md
+
+- [ ] https://github.ibm.com/runtimes/squad-node/wiki/Playbacks
+
+- [ ] add lint, etc, to operator from shorty
+
+- recreate with kubebuilder?
+  - https://github.com/kubernetes-sigs/kubebuilder
+    - better than op-sdk? should try, looks promising
+    - http://banjiewen.net/operator-sdk.html: use kubebuilder...
+> etcd-operator and prometheus-operator are implemented with basic client-go
+> based controllers. No Operator SDK, no Kubebuilder, etc.
+
+- feature: suport label of `*`
+  - [ ] ...
+  - build a queue of work, and a goroutine to do the work, fetch crd at
+    beginning of each work to make sure its still current, somehow mark status
+    per target. deside how parallel to make the signalling... or don't care?
+  - https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#-strong-read-operations-pod-v1-core-strong-
+  - Query:
+	// Find all reportable pods
+	list := &corev1.PodList{}
+	// opts := client.MatchingLabels{"nodejs.appsody.dev/reportable": "true"}
+	opts := client.MatchingLabels{"run": "ex"}
+	err = mgr.GetAPIReader().List(context.TODO(), list, opts)
+	if err != nil {
+		log.Error(err, "get reportable")
+		return nil
+	}
+	for _, pod := range list.Items {
+		log.Info("reportable", "pod", pod)
+	}
+	panic("x")
+
+- feature: debug port (has a state, so fits into kube better)
+
+- feature: dump heap profile/cpu profile?
+
+- feature: `kubectl nodejs-report` should be possible with an AA
+  - Aggregated API Servers (AA)
+  - https://medium.com/@cloudark/kubernetes-operators-when-how-and-the-gotchas-to-keep-in-mind-b13be9830346
